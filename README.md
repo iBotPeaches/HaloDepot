@@ -6,7 +6,6 @@ a screenshot and description of mod. This can be stored, indexed and made availa
 
 ## Supported Patches
 
- * Assembly patches (`.patchdat`)
  * Halo 2 era patches (`.serenity`)
  
 ## Patch Requirements
