@@ -7,7 +7,7 @@ use App\Enums\Endianness;
 
 interface BinaryReaderInterface
 {
-    public function make(string $input, Endianness $endianness);
+    public function setup(string $input, Endianness $endianness);
 
     public function readByte(): int;
     public function readUByte(): int;
@@ -26,5 +26,7 @@ interface BinaryReaderInterface
     public function readString(int $length): string;
     public function readAlignedString(int $length): string;
 
+    public function location(): int;
+    public function appendSeek(int $position): self;
     public function seek(int $position): self;
 }

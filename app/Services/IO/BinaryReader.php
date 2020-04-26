@@ -9,7 +9,7 @@ class BinaryReader implements BinaryReaderInterface
 {
     private \PhpBinaryReader\BinaryReader $reader;
 
-    public function make(string $input, Endianness $endianness = null)
+    public function setup(string $input, Endianness $endianness = null)
     {
         $this->reader = new \PhpBinaryReader\BinaryReader($input, $endianness->value ?? Endianness::LITTLE);
     }
@@ -71,9 +71,20 @@ class BinaryReader implements BinaryReaderInterface
         return $this->reader->readAlignedString($length);
     }
 
+    public function location(): int
+    {
+        return $this->reader->getPosition();
+    }
+
     public function seek(int $position): self
     {
         $this->reader->setPosition($position);
+        return $this;
+    }
+
+    public function appendSeek(int $length): self
+    {
+        $this->reader->setPosition($this->location() + $length);
         return $this;
     }
 }
