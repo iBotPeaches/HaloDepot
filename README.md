@@ -17,6 +17,13 @@ a screenshot and description of mod. This can be stored, indexed and made availa
  
  The goal for Halo Depot is to be simple - Upload patch & good to go.
  
+## Packages
+
+ I like documenting what packages I use for legal and credit reasons.
+ 
+ * Laravel - https://github.com/laravel/laravel - MIT
+ * Binary Reader - https://github.com/mdurrant/php-binary-reader - MIT
+ 
 ## License
 
  It is behind an MIT license because GitHub wants me to pick one. You can do anything with it inline with that license.
