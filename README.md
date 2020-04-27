@@ -23,6 +23,7 @@ a screenshot and description of mod. This can be stored, indexed and made availa
  * Laravel - https://github.com/laravel/laravel - MIT
  * Binary Reader - https://github.com/mdurrant/php-binary-reader - MIT
  * Enum - https://github.com/BenSampo/laravel-enum - MIT
+ * Intervention - https://github.com/Intervention/image - MIT
  
 ## License
 
