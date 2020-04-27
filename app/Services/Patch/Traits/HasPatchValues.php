@@ -52,7 +52,7 @@ trait HasPatchValues
         if ($header) {
             $header = hex2bin($header);
         }
-        $this->modImage = ImageManager::configure(['driver' => 'imagick'])->make($header . $contents);
+        $this->modImage = ImageManager::make($header . $contents);
         return $this;
     }
 
