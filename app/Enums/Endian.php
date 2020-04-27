@@ -11,7 +11,7 @@ use BenSampo\Enum\Enum;
  * @method static static LITTLE()
  * @method static static BIG()
  */
-class Endianness extends Enum
+class Endian extends Enum
 {
     public const LITTLE = 'little';
 

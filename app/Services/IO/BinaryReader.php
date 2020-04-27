@@ -3,15 +3,15 @@ declare(strict_types = 1);
 
 namespace App\Services\IO;
 
-use App\Enums\Endianness;
+use App\Enums\Endian;
 
 class BinaryReader implements BinaryReaderInterface
 {
     private \PhpBinaryReader\BinaryReader $reader;
 
-    public function setup(string $input, Endianness $endianness = null)
+    public function setup(string $input, Endian $endianness = null)
     {
-        $this->reader = new \PhpBinaryReader\BinaryReader($input, $endianness->value ?? Endianness::LITTLE);
+        $this->reader = new \PhpBinaryReader\BinaryReader($input, $endianness->value ?? Endian::LITTLE);
     }
 
     public function readByte(): int

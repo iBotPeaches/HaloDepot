@@ -3,11 +3,11 @@ declare(strict_types = 1);
 
 namespace App\Services\IO;
 
-use App\Enums\Endianness;
+use App\Enums\Endian;
 
 interface BinaryReaderInterface
 {
-    public function setup(string $input, Endianness $endianness);
+    public function setup(string $input, Endian $endianness);
 
     public function readByte(): int;
     public function readUByte(): int;

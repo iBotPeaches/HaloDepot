@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace App\Services\Patch\Serenity;
 
-use App\Enums\Endianness;
+use App\Enums\Endian;
 use App\Services\Patch\AbstractPatch;
 use App\Services\Patch\Traits\HasPatchValues;
 
@@ -22,7 +22,7 @@ class SerenityPatch extends AbstractPatch
 
     public function extractPatchInfo(string $contents): void
     {
-        $this->reader->setup($contents, Endianness::LITTLE());
+        $this->reader->setup($contents, Endian::LITTLE());
         $this->setAuthor($this->readAuthor());
         $this->setMapName($this->readMapName());
         $this->setModMapName($this->readModMapName());
