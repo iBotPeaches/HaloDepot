@@ -6,4 +6,5 @@ namespace App\Services\Patch;
 interface PatchFormatInterface
 {
     public static function getMagic(): string;
+    public function extractPatchInfo(string $contents): void;
 }
