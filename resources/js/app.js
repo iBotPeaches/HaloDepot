@@ -9,7 +9,9 @@ window.Vue = require('vue');
 import Buefy from 'buefy';
 import 'buefy/dist/buefy.css';
 
-Vue.use(Buefy);
+Vue.use(Buefy, {
+    defaultIconPack: 'fas',
+});
 
 require('./partials/navbar');
 
