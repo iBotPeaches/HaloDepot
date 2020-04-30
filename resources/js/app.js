@@ -14,6 +14,7 @@ Vue.use(Buefy, {
 });
 
 require('./partials/navbar');
+require('./partials/upload');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
