@@ -28,8 +28,8 @@
 
             <div class="navbar-end">
                 <div class="buttons">
-                    <a class="button is-fullwidth is-primary">
-                        <strong>Upload</strong>
+                    <a class="button is-fullwidth is-primary" href="{{ route('upload.show') }}">
+                        <strong>Add Patch</strong>
                     </a>
                 </div>
             </div>
