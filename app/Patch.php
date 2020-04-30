@@ -19,6 +19,7 @@ use Ramsey\Uuid\Uuid;
  * @property GameEnum $game
  * @property PatchEnum $patch
  * @property string $hash
+ * @property string $slug
  * @property string $name
  * @property string $map
  * @property string $author
@@ -58,7 +59,7 @@ class Patch extends Model
 
     public function uploadImage(Image $image): void
     {
-        $filename = $this->patch->key . '-image-' . Uuid::uuid4();
+        $filename = $this->patch->key . '-image-' . Uuid::uuid4() . '.png';
         Storage::disk('local')->put($filename, (string) $image->encode('png'));
 
         $this->image_path = $filename;
