@@ -8,6 +8,9 @@ use App\Enums\Patch as PatchEnum;
 use BenSampo\Enum\Traits\CastsEnums;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Image;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Class Patch
@@ -17,11 +20,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property PatchEnum $patch
  * @property string $hash
  * @property string $name
+ * @property string $map
  * @property string $author
  * @property string $description
  * @property string $image_path
  * @property string $file_path
  * @property int $views
+ * @property array $data
  * @property-read Carbon $created_at
  * @property-read Carbon $updated_at
  */
@@ -39,5 +44,23 @@ class Patch extends Model
     protected $casts = [
         'game'  => 'int',
         'patch' => 'int',
+        'data'  => 'array',
     ];
+
+    public function uploadPatch(string $contents): void
+    {
+        $filename = $this->patch->key . '-' . Uuid::uuid4();
+        Storage::disk('s3')->put($filename, $contents);
+
+        $this->hash = md5($contents);
+        $this->file_path = $filename;
+    }
+
+    public function uploadImage(Image $image): void
+    {
+        $filename = $this->patch->key . '-image-' . Uuid::uuid4();
+        Storage::disk('local')->put($filename, (string) $image->encode('png'));
+
+        $this->image_path = $filename;
+    }
 }
