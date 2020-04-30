@@ -14,3 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/upload', 'UploadController@show')->name('upload.show');
+Route::post('/upload', 'UploadController@store')->name('upload.store');
