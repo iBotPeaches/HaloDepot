@@ -52,7 +52,9 @@ trait HasPatchValues
         if ($header) {
             $header = hex2bin($header);
         }
-        $this->modImage = ImageManager::make($header . $contents);
+
+        // For some reason DDS preview images need to be rotated 180.
+        $this->modImage = ImageManager::make($header . $contents)->rotate(180);
         return $this;
     }
 
