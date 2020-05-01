@@ -15,4 +15,7 @@
             </div>
         </div>
     </section>
+    <br />
+    <h3 class="is-size-4 title">Recent Patches</h3>
+    @include('partials.home.recent_patches')
 @stop
