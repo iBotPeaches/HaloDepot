@@ -19,7 +19,7 @@ class UploadController extends Controller
 
     public function store(UploadPatchRequest $request): RedirectResponse
     {
-        return DB::transaction(function() use ($request) {
+        return DB::transaction(function () use ($request) {
             $patch = PatchFactory::identifyAddPatch($request->file('patch'));
 
             return redirect()->route('patch.show', [$patch]);
