@@ -1,3 +1,9 @@
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
+
+.align-columns {
+    align-items: stretch;
+    flex-wrap: wrap;
+    display: inline-flex;
+}
