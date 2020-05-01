@@ -48,6 +48,13 @@ class Patch extends Model
         'data'  => 'array',
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    # region Functions
+
     public function uploadPatch(string $contents): void
     {
         $filename = $this->patch->key . '-' . Uuid::uuid4();
@@ -60,8 +67,20 @@ class Patch extends Model
     public function uploadImage(Image $image): void
     {
         $filename = $this->patch->key . '-image-' . Uuid::uuid4() . '.png';
-        Storage::disk('local')->put($filename, (string) $image->encode('png'));
+        Storage::disk('local')->put('/public/images/' . $filename, (string) $image->encode('png'));
 
         $this->image_path = $filename;
     }
+
+    public function image(): string
+    {
+        return asset('/storage/images/' . $this->image_path);
+    }
+
+    public function patchFileName(): string
+    {
+        return $this->slug . '.' . $this->patch->getExtension();
+    }
+
+    # endregion
 }
