@@ -25,6 +25,7 @@ a screenshot and description of mod. This can be stored, indexed and made availa
  * Enum - https://github.com/BenSampo/laravel-enum - MIT
  * Intervention - https://github.com/Intervention/image - MIT
  * Flysystem - https://github.com/thephpleague/flysystem - MIT
+ * Code Sniffer - https://github.com/squizlabs/PHP_CodeSniffer - BSD-3
  
 ## License
 
