@@ -6,6 +6,7 @@
     <title>@yield('title')</title>
     <meta name="description" content="@yield('description')">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {!! Artesaos\SEOTools\Facades\SEOTools::generate() !!}
     <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
 </head>
 
