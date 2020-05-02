@@ -20,6 +20,8 @@ class PatchController extends Controller
 
     public function download(Patch $patch, Request $request): StreamedResponse
     {
+        Patch::query()->where('id', $patch->id)->increment('downloads');
+
         return Storage::disk('s3')->download($patch->file_path, $patch->patchFileName());
     }
 }
