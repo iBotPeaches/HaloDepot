@@ -17,22 +17,23 @@ class PatchFactory
         $extension = $file->getClientOriginalExtension();
         switch ($extension) {
             case 'serenity':
-                return self::createSerenityPatch($file->get());
+                return self::createSerenityPatch($file);
         }
 
         return null;
     }
 
-    private static function createSerenityPatch(string $contents): ?Patch
+    private static function createSerenityPatch(UploadedFile $file): ?Patch
     {
         $serenityPatch = new SerenityPatch();
-        $serenityPatch->extractPatchInfo($contents);
+        $serenityPatch->extractPatchInfo($file->get());
 
         $patch = self::createBasePatch(Game::HALO_2(), PatchEnum::SERENITY());
         $patch->name = $serenityPatch->getModName();
         $patch->map = $serenityPatch->getMapName();
         $patch->author = $serenityPatch->getAuthor();
         $patch->description = $serenityPatch->getModDescription();
+        $patch->filesize = $file->getSize();
 
         // extra payload data (modded map name + map name)
         $patch->data = [
@@ -40,7 +41,7 @@ class PatchFactory
         ];
 
         // Store patch & image
-        $patch->uploadPatch($contents);
+        $patch->uploadPatch($file->get());
         $patch->uploadImage($serenityPatch->getModImage());
 
         $patch->saveOrFail();
