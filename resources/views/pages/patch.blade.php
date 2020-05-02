@@ -59,7 +59,7 @@
     <div class="columns is-centered">
         <div class="column is-half">
             <a href="{{ route('patch.download', [$patch]) }}" class="button is-fullwidth is-success">
-                Download {{ $patch->name }}
+                Download {{ $patch->name }} ({{ $patch->humanFilesize() }})
             </a>
         </div>
     </div>
