@@ -29,6 +29,7 @@ use Ramsey\Uuid\Uuid;
  * @property string $image_path
  * @property string $file_path
  * @property int $downloads
+ * @property int $filesize
  * @property array $data
  * @property-read Carbon $created_at
  * @property-read Carbon $updated_at
@@ -105,6 +106,16 @@ class Patch extends Model
     public function patchFileName(): string
     {
         return $this->slug . '.' . $this->patch->getExtension();
+    }
+
+    public function humanFilesize(): string
+    {
+        $units = ['B', 'KB', 'MB'];
+
+        for ($i = 0; $this->filesize > 1024; $i++) {
+            $this->filesize /= 1024;
+        }
+        return round($this->filesize, 2) . ' ' . $units[$i];
     }
 
     # endregion
