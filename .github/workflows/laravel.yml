@@ -31,6 +31,8 @@ jobs:
         touch database/database.sqlite
     - name: PHPCS
       run: vendor/bin/phpcs
+    - name: Do migrations
+      run: php artisan migrate
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
