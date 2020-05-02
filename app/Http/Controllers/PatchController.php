@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Artesaos\SEOTools\Facades\SEOTools;
 
 class PatchController extends Controller
 {
@@ -18,6 +19,11 @@ class PatchController extends Controller
 
     public function show(Patch $patch, Request $request): View
     {
+        // SEO
+        SEOTools::setTitle($patch->name . ' by ' . $patch->author);
+        SEOTools::addImages([$patch->image()]);
+        SEOTools::setDescription($patch->description);
+
         return view('pages.patch', [
             'patch' => $patch
         ]);
