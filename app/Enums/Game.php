@@ -14,4 +14,25 @@ use BenSampo\Enum\Enum;
 class Game extends Enum implements LocalizedEnum
 {
     const HALO_2 = 1;
+
+    public static function coerce($enumKeyOrValue): ?self
+    {
+        switch ($enumKeyOrValue) {
+            case 'h2x':
+                $enumKeyOrValue = self::HALO_2;
+                break;
+        }
+
+        return parent::coerce($enumKeyOrValue);
+    }
+
+    public function getUrlSlug(): string
+    {
+        switch ($this->value) {
+            case self::HALO_2:
+                return 'h2x';
+        }
+
+        return 'unknown';
+    }
 }
