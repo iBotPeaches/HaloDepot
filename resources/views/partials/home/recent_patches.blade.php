@@ -11,7 +11,7 @@
     </tr>
     </thead>
     <tbody>
-        @foreach($recentPatches as $patch)
+        @foreach($patches as $patch)
             <tr>
                 <td>
                     <a href="{{ route('patch.show', [$patch]) }}">
