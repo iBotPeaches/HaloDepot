@@ -9,7 +9,7 @@ class AddSlugToPatch extends Migration
     public function up(): void
     {
         Schema::table('patches', function (Blueprint $table) {
-            $table->string('slug', 128)->unique()->after('hash');
+            $table->string('slug', 128)->unique()->after('hash')->nullable(false);
         });
     }
 
