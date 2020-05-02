@@ -11,6 +11,11 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class PatchController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('throttle:60,3')->only(['download']);
+    }
+
     public function show(Patch $patch, Request $request): View
     {
         return view('pages.patch', [
