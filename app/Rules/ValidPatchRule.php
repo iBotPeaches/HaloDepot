@@ -9,6 +9,8 @@ use Illuminate\Http\UploadedFile;
 
 class ValidPatchRule implements Rule
 {
+    protected string $message = 'This patch format could not be identified.';
+
     /**
      * @param string $attribute
      * @param UploadedFile $file
@@ -28,7 +30,7 @@ class ValidPatchRule implements Rule
 
     public function message(): string
     {
-        return 'The patch could not be identified.';
+        return $this->message;
     }
 
     private function validateSerenity(UploadedFile $file): bool
@@ -36,6 +38,26 @@ class ValidPatchRule implements Rule
         $serenityPatch = new SerenityPatch();
         try {
             $serenityPatch->extractPatchInfo($file->get());
+
+            if (empty($serenityPatch->getModName())) {
+                $this->message = 'Mod must have a mod name.';
+                return false;
+            }
+
+            if (empty($serenityPatch->getAuthor())) {
+                $this->message = 'Mod must have an author.';
+                return false;
+            }
+
+            if (empty($serenityPatch->getModDescription())) {
+                $this->message = 'Mod must have a description.';
+                return false;
+            }
+
+            if ($serenityPatch->getModImage()->getWidth() < 5) {
+                $this->message = 'Mod must have a preview image.';
+                return false;
+            }
         } catch (\Throwable $exception) {
             return false;
         }
