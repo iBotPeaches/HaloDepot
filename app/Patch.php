@@ -26,7 +26,7 @@ use Ramsey\Uuid\Uuid;
  * @property string $description
  * @property string $image_path
  * @property string $file_path
- * @property int $views
+ * @property int $downloads
  * @property array $data
  * @property-read Carbon $created_at
  * @property-read Carbon $updated_at
