@@ -12,7 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DB_DATABASE: halodepot
-      DB_PORT: ${{ job.services.mysql.ports[3306] }}
 
     services:
       mysql:
@@ -41,6 +40,10 @@ jobs:
     - name: PHPCS
       run: vendor/bin/phpcs
     - name: Do migrations
+      env:
+        DB_PORT: ${{ job.services.mysql.ports[3306] }}
       run: php artisan migrate
     - name: Execute tests (Unit and Feature tests) via PHPUnit
+      env:
+        DB_PORT: ${{ job.services.mysql.ports[3306] }}
       run: vendor/bin/phpunit
