@@ -19,7 +19,7 @@
                     </a>
 
                     <div class="navbar-dropdown">
-                        <a class="navbar-item">
+                        <a href="{{ route('history.index', ['game' => 'h2x']) }}" class="navbar-item">
                             Halo 2
                         </a>
                     </div>
@@ -30,7 +30,7 @@
                     </a>
 
                     <div class="navbar-dropdown">
-                        <a class="navbar-item">
+                        <a href="{{ route('history.patches', ['patchType' => 'serenity']) }}" class="navbar-item">
                             Serenity
                         </a>
                     </div>
