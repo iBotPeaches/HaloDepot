@@ -11,8 +11,18 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      DB_CONNECTION: sqlite
-      DB_DATABASE: database/database.sqlite
+      DB_DATABASE: halodepot
+      DB_PORT: ${{ job.services.mysql.ports[3306] }}
+
+    services:
+      mysql:
+        image: mysql:5.8
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: halodepot
+        ports:
+          - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
     - uses: actions/checkout@v2
@@ -28,10 +38,6 @@ jobs:
       run: chmod -R 777 storage bootstrap/cache
     - name: Asset Packaging
       run: yarn run dev
-    - name: Create Database
-      run: |
-        mkdir -p database
-        touch database/database.sqlite
     - name: PHPCS
       run: vendor/bin/phpcs
     - name: Do migrations
