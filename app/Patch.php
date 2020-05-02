@@ -7,8 +7,10 @@ use App\Enums\Game as GameEnum;
 use App\Enums\Patch as PatchEnum;
 use BenSampo\Enum\Traits\CastsEnums;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Intervention\Image\Image;
 use Ramsey\Uuid\Uuid;
 
@@ -30,6 +32,7 @@ use Ramsey\Uuid\Uuid;
  * @property array $data
  * @property-read Carbon $created_at
  * @property-read Carbon $updated_at
+ * @method static ofMap(string $map)
  */
 class Patch extends Model
 {
@@ -52,6 +55,28 @@ class Patch extends Model
     {
         return 'slug';
     }
+
+    # region Mutators
+
+    public function setMapAttribute(string $map): void
+    {
+        $this->attributes['map'] = Str::replaceLast('.map', null, $map);
+    }
+
+    # endregion
+
+    # region Scopes
+
+    public function scopeOfMap(Builder $query, string $map = null): Builder
+    {
+        if (empty($map)) {
+            return $query;
+        }
+
+        return $query->where('map', $map);
+    }
+
+    # endregion
 
     # region Functions
 
