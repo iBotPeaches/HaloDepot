@@ -16,6 +16,24 @@ a screenshot and description of mod. This can be stored, indexed and made availa
  
  The goal for Halo Depot is to be simple - Upload patch & good to go.
  
+## Server Configuration
+
+ While most of the uploads (patches) are on S3, we still need to process them with some high limits because
+ patches are getting too large. (WTF 200mb patches)
+ 
+  * `post_max_size` - Due at least 256MB
+  * `upload_max_filesize` - Due 256MB as well
+  * `memory_limit` - Need at least 256MB due to the processing
+  
+As well as due to the S3 configuration, you must set:
+
+ * `AWS_ACCESS_KEY_ID` - Access Key from IAM
+ * `AWS_SECRET_ACCESS_KEY` - Secret Key from IAM
+ * `AWS_DEFAULT_REGION` - Region for S3 bucket
+ * `AWS_BUCKET` - Bucket name itself.
+ 
+Now don't be an idiot and use root creds. Make a new IAM user, gate it to only that bucket for like Put/Delete Object.
+ 
 ## Packages
 
  I like documenting what packages I use for legal and credit reasons.
