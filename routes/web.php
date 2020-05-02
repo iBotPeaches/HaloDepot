@@ -21,3 +21,10 @@ Route::post('/upload', 'UploadController@store')->name('upload.store');
 // Patches
 Route::get('/patch/{patch}', 'PatchController@show')->name('patch.show');
 Route::get('/patch/{patch}/download', 'PatchController@download')->name('patch.download');
+
+// History
+Route::pattern('game', 'h2x');
+Route::get('/games/{game}/{map?}', 'HistoryController@index')->name('history.index');
+
+Route::pattern('patchType', 'serenity');
+Route::get('/patches/{patchType}', 'HistoryController@patches')->name('history.patches');
