@@ -44,6 +44,7 @@ Now don't be an idiot and use root creds. Make a new IAM user, gate it to only t
  * Intervention - https://github.com/Intervention/image - MIT
  * Flysystem - https://github.com/thephpleague/flysystem - MIT
  * Code Sniffer - https://github.com/squizlabs/PHP_CodeSniffer - BSD-3
+ * DBAL - https://github.com/doctrine/dbal - MIT
  
 ## License
 
