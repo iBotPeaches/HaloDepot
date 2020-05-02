@@ -10,7 +10,7 @@ class AddCleanNameAndCustomDataToPatches extends Migration
     {
         Schema::table('patches', function (Blueprint $table) {
             $table->string('map', 128)->after('name')->default('');
-            $table->json('data')->after('views');
+            $table->json('data')->after('views')->nullable(true);
         });
     }
 
