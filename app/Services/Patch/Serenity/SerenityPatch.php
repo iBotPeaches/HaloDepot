@@ -6,6 +6,7 @@ namespace App\Services\Patch\Serenity;
 use App\Enums\Endian;
 use App\Services\Patch\AbstractPatch;
 use App\Services\Patch\Traits\HasPatchValues;
+use Illuminate\Support\Str;
 
 class SerenityPatch extends AbstractPatch
 {
@@ -23,12 +24,23 @@ class SerenityPatch extends AbstractPatch
     public function extractPatchInfo(string $contents): void
     {
         $this->reader->setup($contents, Endian::LITTLE());
-        $this->setAuthor($this->readAuthor());
-        $this->setMapName($this->readMapName());
-        $this->setModMapName($this->readModMapName());
-        $this->setModName($this->readModName());
-        $this->setModDescription($this->readDescription());
-        $this->setModImage($this->readModImage(), self::BITMAP_HEADER);
+
+        $authorOrMapName = $this->readAuthor();
+        if (Str::contains($authorOrMapName, '.map')) {
+            $this->setAuthor('Unknown');
+            $this->setMapName($authorOrMapName);
+            $this->setModMapName($this->readModMapName());
+            $this->setModName($this->readModName());
+            $this->setModDescription($this->readDescription());
+            $this->setModImage($this->readModImage(), self::BITMAP_HEADER);
+        } else {
+            $this->setAuthor($authorOrMapName);
+            $this->setMapName($this->readMapName());
+            $this->setModMapName($this->readModMapName());
+            $this->setModName($this->readModName());
+            $this->setModDescription($this->readDescription());
+            $this->setModImage($this->readModImage(), self::BITMAP_HEADER);
+        }
     }
 
     private function readAuthor(): string
@@ -76,6 +88,10 @@ class SerenityPatch extends AbstractPatch
     {
         $length = $this->reader
             ->readUShort();
+
+        if ($length > 255) {
+            return '';
+        }
 
         return $this->reader
             ->appendSeek(0x2)
