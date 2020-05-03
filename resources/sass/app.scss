@@ -8,6 +8,11 @@
     display: inline-flex;
 }
 
+.navbar.is-dark .navbar-item.has-dropdown.is-selected .navbar-link {
+    background-color: #292929;
+    color: #fff;
+}
+
 // Import Bulma's core
 @import "~bulma/sass/utilities/all";
 

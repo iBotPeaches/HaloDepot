@@ -13,7 +13,7 @@
 
         <div id="gamesDropdown" class="navbar-menu">
             <div class="navbar-start">
-                <div class="navbar-item has-dropdown is-hoverable">
+                <div class="navbar-item has-dropdown is-hoverable {{ (request()->is('games/*')) ? 'is-selected' : null }}">
                     <a class="navbar-link">
                         Games
                     </a>
@@ -24,7 +24,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="navbar-item has-dropdown is-hoverable">
+                <div class="navbar-item has-dropdown is-hoverable {{ (request()->is('patches/*')) ? 'is-selected' : null }}">
                     <a class="navbar-link">
                         Patches
                     </a>
