@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+require('laravel-mix-polyfill');
 
 /*
  |--------------------------------------------------------------------------
@@ -14,4 +15,9 @@ const mix = require('laravel-mix');
 mix
     .js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
+    .polyfill({
+        enabled: true,
+        useBuiltIns: "usage",
+        targets: "> 0.25%, not dead"
+    })
     .version();
