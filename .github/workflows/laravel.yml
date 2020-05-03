@@ -47,3 +47,16 @@ jobs:
       env:
         DB_PORT: ${{ job.services.mysql.ports[3306] }}
       run: vendor/bin/phpunit
+    - name: Run Deployment
+      shell: bash
+      if: github.ref == 'refs/heads/master'
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.PROD_SSH_SECRET_KEY }}
+        SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+      run: |
+        mkdir -p $HOME/.ssh
+        echo -e "StrictHostKeyChecking no" >> $HOME/.ssh/config
+        echo -e "ForwardAgent yes" >> $HOME/.ssh/config
+        eval $(ssh-agent -s)
+        echo "${SSH_PRIVATE_KEY}" | base64 -d | ssh-add -
+        php artisan deploy --vvv
