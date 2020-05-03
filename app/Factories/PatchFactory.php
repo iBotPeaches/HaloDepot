@@ -8,12 +8,22 @@ use App\Patch;
 use App\Services\Patch\Serenity\SerenityPatch;
 use Illuminate\Http\UploadedFile;
 use App\Enums\Patch as PatchEnum;
-use Ramsey\Uuid\Uuid;
 
 class PatchFactory
 {
     public static function identifyAddPatch(UploadedFile $file): ?Patch
     {
+        $md5Hash = md5($file->get());
+
+        /** @var Patch $existingPatch */
+        $existingPatch = Patch::query()
+            ->where('hash', $md5Hash)
+            ->first();
+
+        if (!empty($existingPatch)) {
+            return $existingPatch;
+        }
+
         $extension = $file->getClientOriginalExtension();
         switch ($extension) {
             case 'serenity':
