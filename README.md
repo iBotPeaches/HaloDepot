@@ -46,6 +46,7 @@ Now don't be an idiot and use root creds. Make a new IAM user, gate it to only t
  * Code Sniffer - https://github.com/squizlabs/PHP_CodeSniffer - BSD-3
  * DBAL - https://github.com/doctrine/dbal - MIT
  * SEOTools - https://github.com/artesaos/seotools - MIT
+ * Laravel Deployer - https://github.com/lorisleiva/laravel-deployer - MIT
  
 ## License
 
