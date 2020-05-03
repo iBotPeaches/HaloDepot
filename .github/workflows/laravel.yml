@@ -59,4 +59,4 @@ jobs:
         echo -e "ForwardAgent yes" >> $HOME/.ssh/config
         eval $(ssh-agent -s)
         echo "${SSH_PRIVATE_KEY}" | base64 -d | ssh-add -
-        php artisan deploy --vvv
+        php artisan deploy
