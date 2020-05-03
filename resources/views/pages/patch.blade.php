@@ -23,7 +23,7 @@
             </section>
             <section>
                 <div class="columns is-gapless is-flex align-columns">
-                    <div class="column is-3">
+                    <div class="column is-3 is-full-mobile">
                         <div class="card">
                             <div class="card-image">
                                 <figure class="image is-4by3">
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="column is-9 notification">
+                    <div class="column is-9 notification is-full-mobile">
                         <div class="tile is-child notification">
                             {{ $patch->description }}
                             <hr />
