@@ -105,6 +105,21 @@ class SerenityPatchTest extends TestCase
                     ],
                 ],
             ],
+            [
+                'filename' => 'BlockFortFinal.serenity',
+                'type'     => Patch::SERENITY(),
+                'fields'   => [
+                    'author'      => 'Unknown',
+                    'map_name'    => 'gemini.map',
+                    'mod_name'    => 'gemini.map',
+                    'mod_title'   => 'Block Fort',
+                    'description' => 'Mario Kart 64 Multiplayer Level',
+                    'image'       => [
+                        'width'  => 224,
+                        'height' => 207,
+                    ],
+                ],
+            ],
         ];
     }
 
