@@ -10,7 +10,11 @@ class PatchObserver
 {
     public function creating(Patch $patch)
     {
-        $slug = Str::slug($patch->name . '-' . $patch->author);
+        if ($patch->author !== 'Unknown') {
+            $slug = Str::slug($patch->name . '-' . $patch->author);
+        } else {
+            $slug = Str::slug($patch->name);
+        }
 
         while (Patch::query()->where('slug', $slug)->exists()) {
             $slug .= '-' . Str::random(6);
