@@ -17,5 +17,5 @@
     </section>
     <br />
     <h3 class="is-size-4 title">Recent Patches</h3>
-    @include('partials.home.recent_patches', ['patches' => $recentPatches])
+    @include('partials.home.recent_patches', ['patches' => $recentPatches, 'showGame' => true])
 @stop

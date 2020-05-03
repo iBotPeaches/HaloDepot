@@ -9,7 +9,7 @@
             @include('partials.history_navigation')
         </div>
         <div class="column is-9">
-            @include('partials.home.recent_patches', ['patches' => $patches])
+            @include('partials.home.recent_patches', ['patches' => $patches, 'showGame' => false])
             {{ $patches->links() }}
         </div>
     </div>
