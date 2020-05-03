@@ -39,17 +39,20 @@ class ValidPatchRule implements Rule
         try {
             $serenityPatch->extractPatchInfo($file->get());
 
-            if (empty($serenityPatch->getModName())) {
+            $modName = $serenityPatch->getModName();
+            if (empty($modName) || ! ctype_print($modName)) {
                 $this->message = 'Mod must have a mod name.';
                 return false;
             }
 
-            if (empty($serenityPatch->getAuthor())) {
+            $authorName = $serenityPatch->getAuthor();
+            if (empty($authorName) || ! ctype_print($authorName)) {
                 $this->message = 'Mod must have an author.';
                 return false;
             }
 
-            if (empty($serenityPatch->getModDescription())) {
+            $modDescription = $serenityPatch->getModDescription();
+            if (empty($modDescription) || ! ctype_print($modDescription)) {
                 $this->message = 'Mod must have a description.';
                 return false;
             }
