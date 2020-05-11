@@ -24,7 +24,6 @@ interface BinaryReaderInterface
     public function readBytes(int $length);
 
     public function readString(int $length): string;
-    public function readAlignedString(int $length): string;
 
     public function location(): int;
     public function appendSeek(int $position): self;

@@ -66,11 +66,6 @@ class BinaryReader implements BinaryReaderInterface
         return $this->reader->readString($length);
     }
 
-    public function readAlignedString(int $length): string
-    {
-        return $this->reader->readAlignedString($length);
-    }
-
     public function location(): int
     {
         return $this->reader->getPosition();
