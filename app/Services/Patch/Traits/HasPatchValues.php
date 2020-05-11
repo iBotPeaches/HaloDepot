@@ -14,6 +14,7 @@ trait HasPatchValues
     private string $modName;
     private string $modDescription;
     private Image $modImage;
+    private int $patchVersion;
 
     # region Setters
 
@@ -58,6 +59,12 @@ trait HasPatchValues
         return $this;
     }
 
+    public function setPatchVersion(int $version): self
+    {
+        $this->patchVersion = $version;
+        return $this;
+    }
+
     # endregion
 
     # region Getters
@@ -90,6 +97,11 @@ trait HasPatchValues
     public function getModImage(): Image
     {
         return $this->modImage ?? new Image();
+    }
+
+    public function getPatchVersion(): int
+    {
+        return $this->patchVersion ?? 1;
     }
 
     # endregion
