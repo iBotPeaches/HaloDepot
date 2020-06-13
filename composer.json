@@ -1,11 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "ibotpeaches/halodepot",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": [
-        "framework",
-        "laravel"
-    ],
+    "description": "HaloDepot",
     "license": "MIT",
     "require": {
         "php": "^7.4.0",
