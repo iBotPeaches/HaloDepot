@@ -28,6 +28,12 @@ jobs:
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
+    - name: Setup PHP with tools
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+        coverage: xdebug
+
     - name: Install Composer Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
 
