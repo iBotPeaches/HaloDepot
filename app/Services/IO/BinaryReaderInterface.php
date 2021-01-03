@@ -18,12 +18,14 @@ interface BinaryReaderInterface
     public function readInt32(): int;
     public function readUInt32(): int;
 
-    public function readInt64(): int;
-    public function readUInt64(): int;
+    public function readInt64(): string;
+    public function readUInt64(): string;
 
     public function readBytes(int $length);
 
     public function readString(int $length): string;
+    public function readNullTerminatedString(): string;
+    public function readNullTerminatedUtf16String(): string;
 
     public function location(): int;
     public function appendSeek(int $position): self;

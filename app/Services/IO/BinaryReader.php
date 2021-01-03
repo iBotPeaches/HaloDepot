@@ -11,7 +11,10 @@ class BinaryReader implements BinaryReaderInterface
 
     public function setup(string $input, Endian $endianness = null)
     {
-        $this->reader = new \PhpBinaryReader\BinaryReader($input, $endianness->value ?? Endian::LITTLE);
+        $this->reader = new \PhpBinaryReader\BinaryReader(
+            $input,
+            $endianness->value ?? \PhpBinaryReader\Endian::LITTLE
+        );
     }
 
     public function readByte(): int
@@ -46,12 +49,12 @@ class BinaryReader implements BinaryReaderInterface
         return $this->reader->readUInt32();
     }
 
-    public function readInt64(): int
+    public function readInt64(): string
     {
         return $this->reader->readInt64();
     }
 
-    public function readUInt64(): int
+    public function readUInt64(): string
     {
         return $this->reader->readUInt64();
     }
@@ -64,6 +67,26 @@ class BinaryReader implements BinaryReaderInterface
     public function readString(int $length): string
     {
         return $this->reader->readString($length);
+    }
+
+    public function readNullTerminatedString(): string
+    {
+        $string = '';
+        while (($char = $this->readUByte()) !== 0x00) {
+            $string .= chr($char);
+        }
+
+        return $string;
+    }
+
+    public function readNullTerminatedUtf16String(): string
+    {
+        $string = '';
+        while (($char = $this->readUShort()) !== 0x00) {
+            $string .= chr($char);
+        }
+
+        return $string;
     }
 
     public function location(): int
