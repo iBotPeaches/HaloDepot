@@ -3,6 +3,12 @@
     "type": "project",
     "description": "HaloDepot",
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:iBotPeaches/php-binary-reader.git"
+        }
+    ],
     "require": {
         "php": "^7.4.0",
         "artesaos/seotools": "^0.17.2",
@@ -16,7 +22,7 @@
         "laravel/tinker": "^2.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "league/flysystem-cached-adapter": "^1.0",
-        "mdurrant/php-binary-reader": "^1.0"
+        "mdurrant/php-binary-reader": "dev-master"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
