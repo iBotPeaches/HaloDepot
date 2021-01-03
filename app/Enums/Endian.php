@@ -8,12 +8,12 @@ use BenSampo\Enum\Enum;
 /**
  * Class Endianness
  * @package App\Enums
- * @method static static LITTLE()
  * @method static static BIG()
+ * @method static static LITTLE()
  */
 class Endian extends Enum
 {
-    public const LITTLE = 'little';
+    public const BIG = 1;
 
-    public const BIG = 'big';
+    public const LITTLE = 2;
 }
