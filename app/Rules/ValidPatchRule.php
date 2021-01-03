@@ -3,6 +3,7 @@ declare(strict_types = 1);
 
 namespace App\Rules;
 
+use App\Services\Patch\Assembly\AssemblyPatch;
 use App\Services\Patch\Serenity\SerenityPatch;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\UploadedFile;
@@ -23,6 +24,9 @@ class ValidPatchRule implements Rule
         switch ($extension) {
             case 'serenity':
                 return $this->validateSerenity($file);
+
+            case 'asmp':
+                return $this->validateAssembly($file);
         }
 
         return false;
@@ -31,6 +35,20 @@ class ValidPatchRule implements Rule
     public function message(): string
     {
         return $this->message;
+    }
+
+    private function validateAssembly(UploadedFile $file): bool
+    {
+        $assemblyPatch = new AssemblyPatch();
+        try {
+            $assemblyPatch->extractPatchInfo($file->get());
+
+            return false;
+        } catch (\Throwable $exception) {
+            return false;
+        }
+
+        return true;
     }
 
     private function validateSerenity(UploadedFile $file): bool
